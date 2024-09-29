@@ -1,5 +1,11 @@
+import { LandingPage } from "./Pages/LandingPage.tsx";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <LandingPage />
+    </>
+  );
 }
 
 export default App;
