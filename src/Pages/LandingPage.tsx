@@ -1,4 +1,4 @@
-export function LandingPage() {
+export default function LandingPage() {
   return (
     <div className="flex h-[100dvh] items-center justify-center">
       <div className="space-y-4 rounded-lg bg-lime-700 p-10">

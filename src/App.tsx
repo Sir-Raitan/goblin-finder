@@ -1,9 +1,9 @@
-import { LandingPage } from "./Pages/LandingPage.tsx";
+import AppLayout from "./Pages/AppLayout.tsx";
 
 function App() {
   return (
     <>
-      <LandingPage />
+      <AppLayout />
     </>
   );
 }
