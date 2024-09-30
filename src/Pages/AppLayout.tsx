@@ -1,5 +1,4 @@
-import { HiStar } from "react-icons/hi2";
-import { HiOutlineStar } from "react-icons/hi2";
+import StarRating from "../ui/data-input/StarRating";
 
 export default function AppLayout() {
   return (
@@ -47,15 +46,8 @@ export default function AppLayout() {
         </div>
         <div className="mt-10 flex flex-col">
           <h4 className="text-stone-50">Rate this Goblin: </h4>
-          <div className="mt-2 flex items-center gap-3 text-3xl text-amber-500">
-            <HiStar />
-            <HiStar />
-            <HiStar />
-            <HiOutlineStar />
-            <HiOutlineStar />
-            <span className="ml-2 text-amber-50">3</span>
-          </div>
-          <button className="mt-4 rounded-xl bg-lime-600 px-4 py-2 text-xl uppercase hover:bg-lime-500 active:bg-lime-700">
+          <StarRating />
+          <button className="mt-8 rounded-xl bg-lime-600 px-4 py-2 text-xl uppercase hover:bg-lime-500 active:bg-lime-700">
             Rate
           </button>
         </div>
