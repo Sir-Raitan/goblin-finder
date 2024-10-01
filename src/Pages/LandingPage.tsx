@@ -6,9 +6,10 @@ export default function LandingPage() {
   return (
     <div className="flex h-dvh items-center justify-center">
       <Box>
-        <Logo type="large" />
-        <div className="flex flex-col items-stretch gap-2">
-          <Button>Browse goblins</Button>
+        <Logo type="large" className="hidden md:block" />
+        <Logo className="md:hidden" />
+        <div className="flex flex-col items-stretch gap-4 md:px-10">
+          <Button to="app">Browse goblins</Button>
           <Button>Find nearest goblin</Button>
         </div>
       </Box>
