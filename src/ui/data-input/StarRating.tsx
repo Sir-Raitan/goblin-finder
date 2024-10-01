@@ -2,7 +2,7 @@ import { useState } from "react";
 import { HiOutlineStar, HiStar } from "react-icons/hi2";
 
 type StarRatingProps = {
-  onSetRating: (id: number) => void;
+  onSetRating?: (id: number) => void;
 };
 
 type StarProps = {
@@ -18,7 +18,7 @@ function StarRating({ onSetRating }: StarRatingProps) {
 
   function handleSetActive(id: number) {
     setActiveId(id);
-    onSetRating(id);
+    onSetRating?.(id);
   }
   return (
     <div
