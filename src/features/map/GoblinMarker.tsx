@@ -1,7 +1,10 @@
-import { Icon } from "leaflet";
+import { Icon, Popup as PopupInstance } from "leaflet";
 import { Marker, Popup } from "react-leaflet";
+
 import { Goblin } from "../../services/apiGoblin";
 import Button from "../../ui/Button";
+import { useGoblins } from "../goblin/GoblinProvider";
+import { useRef } from "react";
 
 const goblinIcons: { type: number; icon: Icon }[] = [
   {
@@ -54,16 +57,42 @@ type GoblinMarkerProps = {
 };
 
 function GoblinMarker({ goblin }: GoblinMarkerProps) {
+  const { setActiveGoblin } = useGoblins();
+  const popupRef = useRef<PopupInstance>();
+
   const icon = goblinIcons.find((icon) => goblin.type === icon.type)?.icon;
   const position = goblin.position;
   return (
-    <Marker position={position} icon={icon || defaultIcon}>
-      <Popup>
-        <div className="flex flex-col gap-2">
+    <Marker
+      position={position}
+      icon={icon || defaultIcon}
+      eventHandlers={{
+        dblclick: () => {
+          setActiveGoblin(goblin);
+        },
+        click: () => {
+          console.log("jumbo");
+        },
+      }}
+    >
+      <Popup ref={(r) => (popupRef.current = r as NonNullable<PopupInstance>)}>
+        <div
+          className="flex flex-col gap-2"
+          onClick={(e) => e.stopPropagation()}
+        >
           <span>
             {goblin.name} {goblin.surname}
           </span>
-          <Button>Inspect</Button>
+          <Button
+            onClick={() => {
+              if (popupRef.current) {
+                popupRef.current.close();
+              }
+              setActiveGoblin(goblin);
+            }}
+          >
+            Inspect
+          </Button>
         </div>
       </Popup>
     </Marker>
