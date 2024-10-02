@@ -1,20 +1,70 @@
 import { Icon } from "leaflet";
 import { Marker, Popup } from "react-leaflet";
+import { Goblin } from "../../services/apiGoblin";
+import Button from "../../ui/Button";
 
-const goblinUrl = "icons/png/003-troll.png";
+const goblinIcons: { type: number; icon: Icon }[] = [
+  {
+    type: 0,
+    icon: new Icon({
+      iconUrl: "icons/png/002-goblin-1.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -16],
+    }),
+  },
+  {
+    type: 1,
+    icon: new Icon({
+      iconUrl: "icons/png/003-troll.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -16],
+    }),
+  },
+  {
+    type: 2,
+    icon: new Icon({
+      iconUrl: "icons/png/004-ogre.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -16],
+    }),
+  },
+  {
+    type: 3,
+    icon: new Icon({
+      iconUrl: "icons/png/005-giant.png",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -16],
+    }),
+  },
+];
 
-const goblinIcon: Icon = new Icon({
-  iconUrl: goblinUrl,
+const defaultIcon = new Icon({
+  iconUrl: "icons/brand.png",
   iconSize: [32, 32],
   iconAnchor: [16, 16],
   popupAnchor: [0, -16],
 });
 
-function GoblinMarker() {
+type GoblinMarkerProps = {
+  goblin: Goblin;
+};
+
+function GoblinMarker({ goblin }: GoblinMarkerProps) {
+  const icon = goblinIcons.find((icon) => goblin.type === icon.type)?.icon;
+  const position = goblin.position;
   return (
-    <Marker position={[51.505, -0.09]} icon={goblinIcon}>
+    <Marker position={position} icon={icon || defaultIcon}>
       <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
+        <div className="flex flex-col gap-2">
+          <span>
+            {goblin.name} {goblin.surname}
+          </span>
+          <Button>Inspect</Button>
+        </div>
       </Popup>
     </Marker>
   );
