@@ -11,7 +11,7 @@ export default function AppLayout() {
         <Logo />
       </div>
       <SideContainer className="hidden md:block">
-        <Logo className="mb-10" link={true} />
+        <Logo className="my-10" link={true} />
         <GoblinDescription />
       </SideContainer>
       <Map />
